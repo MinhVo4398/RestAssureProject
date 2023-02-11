@@ -1,5 +1,6 @@
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
+import org.testng.Assert;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
@@ -29,10 +30,11 @@ public class Basic {
 
 
         // Update place
+        String newAddress = "Summer Walk, Africa";
         given().log().all().queryParam("key", "qaclick123").header("Content-Type", "application/json")
                 .body("{\n" +
                         "\"place_id\":\"" + placeId + "\",\n" +
-                        "\"address\":\"70 winter walk, USA\",\n" +
+                        "\"address\":\"" + newAddress + "\",\n" +
                         "\"key\":\"qaclick123\"\n" +
                         "}")
                 .when().put("maps/api/place/update/json")
@@ -40,8 +42,15 @@ public class Basic {
 
 
         // Get Place
-
-
+        String getPlacResponse = given().log().all().queryParam("key", "qaclick123")
+                .queryParam("place_id", placeId)
+                .when().get("maps/api/place/get/json")
+                .then().assertThat().log().all().statusCode(200).extract().response().asString();
+        JsonPath js1 = new JsonPath(getPlacResponse);
+        String actualAddress = js1.getString("address");
+        System.out.println(actualAddress);
+        // Assert: Junit, TestNG
+        Assert.assertEquals(newAddress, actualAddress);
     }
 
 }
