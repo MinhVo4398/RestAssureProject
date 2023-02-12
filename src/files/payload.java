@@ -41,13 +41,18 @@ public class payload {
                 "      \"title\": \"RPA\",\n" +
                 "      \"price\": 45,\n" +
                 "      \"copies\": 10\n" +
-                "    },\n" +
-                "     {\n" +
-                "      \"title\": \"Appium\",\n" +
-                "      \"price\": 35,\n" +
-                "      \"copies\": 7\n" +
                 "    }\n" +
                 "  ]\n" +
                 "}";
+    }
+
+    public static String Addbook() {
+        String payload = "{\n" +
+                "    \"name\": \"Learn Appium Automation with Java\",\n" +
+                "    \"isbn\": \"bcd\",\n" +
+                "    \"aisle\": \"2926\",\n" +
+                "    \"author\": \"John foer\"\n" +
+                "}";
+        return payload;
     }
 }
