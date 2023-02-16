@@ -1,0 +1,4 @@
+1) Login  to Jira to Create Session using Login API
+2) Add a comment to existing issue using Add Comment API
+3) Add an attachment to existing issue using Add Attachment API
+4) Get Issue details and verify if added comment and attachment exists using Get Issue API
